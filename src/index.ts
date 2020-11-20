@@ -31,11 +31,11 @@ function main() {
         const environmentVariable = nameToEnvironmentVariableName(label.name);
 
         core.exportVariable(environmentVariable, '1');
-        core.info('Found label "${label.name}". Setting env var:\n  ${environmentVariable}=1')
+        core.info(`Found label "${label.name}". Setting env var:\n  ${environmentVariable}=1`)
         output[identifier] = true
     }
 
-    core.info(`PR labels: ${JSON.stringify(output)}`)
+    core.info(`\nPR labels: ${JSON.stringify(output)}`)
     core.setOutput('labels', output);
 }
 
