@@ -3,7 +3,6 @@ description: |
   Extract labels from the PR that this build belongs to and make them 
   available to other actions.
 author: joerick
-inputs:
 outputs:
   labels: # id of output
     description: |
