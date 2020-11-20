@@ -1,0 +1,29 @@
+{
+  "name": "pr-labels-action",
+  "version": "1.0.0",
+  "description": "A github action that extracts labels from the PR that this build belongs to and make them available to other actions.",
+  "main": "build/index.js",
+  "scripts": {
+    "build": "tsc",
+    "package": "ncc build --source-map --license licenses.txt"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joerick/pr-labels-action.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/joerick/pr-labels-action/issues"
+  },
+  "homepage": "https://github.com/joerick/pr-labels-action#readme",
+  "dependencies": {
+    "@actions/core": "^1.2.6",
+    "@actions/github": "^4.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^4.0.2",
+    "@vercel/ncc": "^0.25.1"
+  }
+}
