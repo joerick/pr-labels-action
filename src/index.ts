@@ -2,7 +2,9 @@ import core from '@actions/core';
 import github from '@actions/github';
 
 try {
-  core.setOutput('labels', github.context.payload?.pull_request?.labels);
+    const labels = github.context.payload?.pull_request?.labels
+    core.debug(`PR labels: ${JSON.stringify(labels)}`)
+    core.setOutput('labels', labels);
 } catch (error) {
-  core.setFailed(error.message);
+    core.setFailed(error.message);
 }

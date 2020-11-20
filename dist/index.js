@@ -15,7 +15,9 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 const core_1 = __importDefault(__webpack_require__(186));
 const github_1 = __importDefault(__webpack_require__(438));
 try {
-    core_1.default.setOutput('labels', (_b = (_a = github_1.default.context.payload) === null || _a === void 0 ? void 0 : _a.pull_request) === null || _b === void 0 ? void 0 : _b.labels);
+    const labels = (_b = (_a = github_1.default.context.payload) === null || _a === void 0 ? void 0 : _a.pull_request) === null || _b === void 0 ? void 0 : _b.labels;
+    core_1.default.debug(`PR labels: ${JSON.stringify(labels)}`);
+    core_1.default.setOutput('labels', labels);
 }
 catch (error) {
     core_1.default.setFailed(error.message);
