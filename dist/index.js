@@ -10,18 +10,12 @@ require('./sourcemap-register.js');module.exports =
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
+var _a, _b;
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const core_1 = __importDefault(__webpack_require__(186));
 const github_1 = __importDefault(__webpack_require__(438));
 try {
-    // `who-to-greet` input defined in action metadata file
-    const nameToGreet = core_1.default.getInput('who-to-greet');
-    console.log(`Hello ${nameToGreet}!`);
-    const time = (new Date()).toTimeString();
-    core_1.default.setOutput("time", time);
-    // Get the JSON webhook payload for the event that triggered the workflow
-    const payload = JSON.stringify(github_1.default.context.payload, undefined, 2);
-    console.log(`The event payload: ${payload}`);
+    core_1.default.setOutput('labels', (_b = (_a = github_1.default.context.payload) === null || _a === void 0 ? void 0 : _a.pull_request) === null || _b === void 0 ? void 0 : _b.labels);
 }
 catch (error) {
     core_1.default.setFailed(error.message);
