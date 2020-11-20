@@ -11,5 +11,6 @@ The labels on this PR. A dictionary containing `true` where a label exists
 ## Example usage
 
 ```yaml
-uses: joerick/pr-labels-action@v1.0.0
+- id: pr-labels
+  uses: joerick/pr-labels-action@v1.0.0
 ```

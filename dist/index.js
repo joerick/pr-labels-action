@@ -26,17 +26,47 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
-var _a, _b;
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const core = __importStar(__webpack_require__(186));
 const github = __importStar(__webpack_require__(438));
-try {
+function main() {
+    var _a, _b;
     const labels = (_b = (_a = github.context.payload) === null || _a === void 0 ? void 0 : _a.pull_request) === null || _b === void 0 ? void 0 : _b.labels;
-    core.info(`PR labels: ${JSON.stringify(labels)}`);
-    core.setOutput('labels', labels);
+    const output = {};
+    if (!labels) {
+        core.info("Not a pull request");
+        core.setOutput('labels', {});
+        return;
+    }
+    if (labels.length == 0) {
+        core.info("No labels found");
+        core.setOutput('labels', {});
+        return;
+    }
+    for (const label of labels) {
+        const identifier = nameToIdentifier(label.name);
+        const environmentVariable = nameToEnvironmentVariableName(label.name);
+        core.exportVariable(environmentVariable, '1');
+        core.info('Found label "${label.name}". Setting env var:\n  ${environmentVariable}=1');
+        output[identifier] = true;
+    }
+    core.info(`PR labels: ${JSON.stringify(output)}`);
+    core.setOutput('labels', output);
+}
+try {
+    main();
 }
 catch (error) {
     core.setFailed(error.message);
+}
+function nameToIdentifier(name) {
+    return name
+        .replace(/[^\w-]+/g, '-')
+        .replace(/-+/g, '-')
+        .toLowerCase();
+}
+function nameToEnvironmentVariableName(name) {
+    return 'GITHUB_PR_LABEL_' + nameToIdentifier(name).toUpperCase().replace('-', '_');
 }
 
 
