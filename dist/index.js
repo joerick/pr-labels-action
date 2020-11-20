@@ -32,7 +32,7 @@ const core = __importStar(__webpack_require__(186));
 const github = __importStar(__webpack_require__(438));
 try {
     const labels = (_b = (_a = github.context.payload) === null || _a === void 0 ? void 0 : _a.pull_request) === null || _b === void 0 ? void 0 : _b.labels;
-    core.debug(`PR labels: ${JSON.stringify(labels)}`);
+    core.info(`PR labels: ${JSON.stringify(labels)}`);
     core.setOutput('labels', labels);
 }
 catch (error) {
