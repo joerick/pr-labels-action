@@ -2,6 +2,54 @@ require('./sourcemap-register.js');module.exports =
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ 214:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+function parseHexColor(input) {
+    // color is in hex format, like 002200 or 3344ff
+    const m = input.match(/^([0-9a-f]{6})$/i);
+    if (m) {
+        return [
+            parseInt(m[1].substr(0, 2), 16),
+            parseInt(m[1].substr(2, 2), 16),
+            parseInt(m[1].substr(4, 2), 16)
+        ];
+    }
+    else {
+        return null;
+    }
+}
+const esc = '\u001b';
+const ansiColor = {
+    startColor(hexColor) {
+        const color = parseHexColor(hexColor);
+        if (!color)
+            return '';
+        const brightness = color.reduce((a, b) => a + b) / 3;
+        let foreground;
+        if (brightness > 190) {
+            // black
+            foreground = `${esc}[38;2;0;0;0m`;
+        }
+        else {
+            // white
+            foreground = `${esc}[38;2;255;255;255m`;
+        }
+        const background = `${esc}[48;2;${color[0]};${color[1]};${color[2]}m`;
+        return background + foreground;
+    },
+    endColor() {
+        return `${esc}[0m`;
+    }
+};
+exports.default = ansiColor;
+
+
+/***/ }),
+
 /***/ 667:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
@@ -26,9 +74,13 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const core = __importStar(__webpack_require__(186));
 const github = __importStar(__webpack_require__(438));
+const ansiColor_1 = __importDefault(__webpack_require__(214));
 function main() {
     var _a, _b;
     const labels = (_b = (_a = github.context.payload) === null || _a === void 0 ? void 0 : _a.pull_request) === null || _b === void 0 ? void 0 : _b.labels;
@@ -49,7 +101,7 @@ function main() {
         const identifier = nameToIdentifier(label.name);
         const environmentVariable = nameToEnvironmentVariableName(label.name);
         core.exportVariable(environmentVariable, '1');
-        core.info(`Found label "${label.name}". Setting env var:\n  ${environmentVariable}=1`);
+        core.info(`Found label ${ansiColor_1.default.startColor(label.color)} ${label.name} ${ansiColor_1.default.endColor()}.\n  Setting env var: ${environmentVariable}=1`);
         output[identifier] = true;
     }
     core.info(`Action output:\n\nlabels: ${JSON.stringify(output)}`);

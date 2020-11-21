@@ -1,5 +1,6 @@
 import * as core from '@actions/core';
 import * as github from '@actions/github';
+import ansiColor from './ansiColor';
 
 interface Label {
     color: string,
@@ -35,7 +36,7 @@ function main() {
         const environmentVariable = nameToEnvironmentVariableName(label.name);
 
         core.exportVariable(environmentVariable, '1');
-        core.info(`Found label "${label.name}". Setting env var:\n  ${environmentVariable}=1`)
+        core.info(`Found label ${ansiColor.startColor(label.color)} ${label.name} ${ansiColor.endColor()}.\n  Setting env var: ${environmentVariable}=1`)
         output[identifier] = true
     }
 
