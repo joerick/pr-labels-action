@@ -41,8 +41,8 @@ jobs:
           fi
 
       # or you can use the action output.
-      # Note: Use lowercase kebab-case and surround the label name with spaces
+      # Note: For the label name, use lowercase kebab-case and surround with spaces
       - run: |
           bin/publish_flimbomble_test_results
-        if: contains(steps.pr-labels.outputs.labels, " test-flimbomble ")
+        if: contains(steps.pr-labels.outputs.labels, ' test-flimbomble ')
 ```
