@@ -87,7 +87,7 @@ function main() {
     const output = {};
     if (!labels) {
         core.info("Not a pull request");
-        core.setOutput('labels', {});
+        core.setOutput('labels', null);
         return;
     }
     if (labels.length == 0) {
