@@ -33,6 +33,8 @@ function main() {
     var _a, _b;
     const labels = (_b = (_a = github.context.payload) === null || _a === void 0 ? void 0 : _a.pull_request) === null || _b === void 0 ? void 0 : _b.labels;
     const output = {};
+    core.info(`Action name: ${github.context.action}`);
+    core.info(`Context: ${JSON.stringify(github.context)}`);
     if (!labels) {
         core.info("Not a pull request");
         core.setOutput('labels', {});
@@ -50,7 +52,7 @@ function main() {
         core.info(`Found label "${label.name}". Setting env var:\n  ${environmentVariable}=1`);
         output[identifier] = true;
     }
-    core.info(`\nPR labels: ${JSON.stringify(output)}`);
+    core.info(`Action output:\n\nlabels: ${JSON.stringify(output)}`);
     core.setOutput('labels', output);
 }
 try {

@@ -14,6 +14,9 @@ function main() {
     const labels: Label[]|undefined = github.context.payload?.pull_request?.labels
     const output: {[k: string]: true} = {}
 
+    core.info(`Action name: ${github.context.action}`)
+    core.info(`Context: ${JSON.stringify(github.context)}`)
+
     if (!labels) {
         core.info("Not a pull request")
         core.setOutput('labels', {})
@@ -26,6 +29,7 @@ function main() {
         return;
     }
 
+
     for (const label of labels) {
         const identifier = nameToIdentifier(label.name);
         const environmentVariable = nameToEnvironmentVariableName(label.name);
@@ -35,7 +39,7 @@ function main() {
         output[identifier] = true
     }
 
-    core.info(`\nPR labels: ${JSON.stringify(output)}`)
+    core.info(`Action output:\n\nlabels: ${JSON.stringify(output)}`)
     core.setOutput('labels', output);
 }
 

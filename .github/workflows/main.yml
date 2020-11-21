@@ -8,6 +8,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Get PR labels
+        id: pr-labels
         uses: ./ # Uses an action in the root directory
       - run: |
-          env | grep GITHUB_PR_LABEL
+          env | grep GITHUB_PR_LABEL || true
