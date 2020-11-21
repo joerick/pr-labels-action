@@ -1,4 +1,4 @@
-github_url = https://github.com/joerick/pr-labels-action/
+github_url = "https://github.com/joerick/pr-labels-action/"
 
 [version]
 current = "1.0.0"
