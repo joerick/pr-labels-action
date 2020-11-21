@@ -84,15 +84,17 @@ const ansiColor_1 = __importDefault(__webpack_require__(214));
 function main() {
     var _a, _b;
     const labels = (_b = (_a = github.context.payload) === null || _a === void 0 ? void 0 : _a.pull_request) === null || _b === void 0 ? void 0 : _b.labels;
-    const output = {};
+    const labelsObject = {};
     if (!labels) {
         core.info("Not a pull request");
-        core.setOutput('labels', null);
+        core.setOutput('labels', '');
+        core.setOutput('labels-object', null);
         return;
     }
     if (labels.length == 0) {
         core.info("No labels found");
-        core.setOutput('labels', {});
+        core.setOutput('labels', '');
+        core.setOutput('labels-object', {});
         return;
     }
     for (const label of labels) {
@@ -100,10 +102,12 @@ function main() {
         const environmentVariable = nameToEnvironmentVariableName(label.name);
         core.exportVariable(environmentVariable, '1');
         core.info(`\nFound label ${ansiColor_1.default.startColor(label.color)} ${label.name} ${ansiColor_1.default.endColor()}\n  Setting env var for remaining steps: ${environmentVariable}=1`);
-        output[identifier] = true;
+        labelsObject[identifier] = true;
     }
-    core.info(`\nAction output:\nlabels: ${JSON.stringify(output)}`);
-    core.setOutput('labels', output);
+    const labelsString = ' ' + Object.keys(labelsObject).join(' ') + ' ';
+    core.info(`\nAction output:\nlabels: ${JSON.stringify(labelsString)}\nlabels-object: ${JSON.stringify(labelsObject)}`);
+    core.setOutput('labels', labelsString);
+    core.setOutput('labels-object', labelsObject);
 }
 try {
     main();

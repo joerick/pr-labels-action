@@ -4,7 +4,11 @@ description: |
   available to other actions.
 author: joerick
 outputs:
-  labels: # id of output
+  labels:
+    description: |
+      The labels on this PR. A string containing tag identifiers surrounded
+      with spaces for easy use with `contains`.
+  labels-object:
     description: |
       The labels on this PR. A dictionary containing `true` where a label
       exists

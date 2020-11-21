@@ -40,8 +40,9 @@ jobs:
             bin/run_flimbomble_tests
           fi
 
-      # or you can use the action output
+      # or you can use the action output.
+      # Note: Use lowercase kebab-case and surround the label name with spaces
       - run: |
           bin/publish_flimbomble_test_results
-        if: steps.pr-labels.outputs.labels.test-flimbomble
+        if: contains(steps.pr-labels.outputs.labels, " test-flimbomble ")
 ```
