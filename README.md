@@ -1,6 +1,6 @@
 # PR Labels Github Action
 
-![./screenshot.png]()
+![screenshot.png]()
 
 A Github action that extracts labels from the PR that this build belongs to, and makes them available to other actions. Labels are available as step outputs and environment variables that you can use in later steps in your action.
 
