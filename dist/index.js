@@ -30,7 +30,7 @@ const ansiColor = {
             return '';
         const brightness = color.reduce((a, b) => a + b) / 3;
         let foreground;
-        if (brightness > 190) {
+        if (brightness > 175) {
             // black
             foreground = `${esc}[38;2;0;0;0m`;
         }
