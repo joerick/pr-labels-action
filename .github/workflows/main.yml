@@ -13,5 +13,5 @@ jobs:
       - run: |
           env | grep GITHUB_PR_LABEL || true
       - run: |
-          echo "enhancement label was there."
-        if: steps.pr-labels.outputs.labels.enhancement == true
+          echo "labels was there."
+        if: steps.pr-labels.outputs.labels
