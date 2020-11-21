@@ -1,6 +1,6 @@
 {
   "name": "pr-labels-action",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A github action that extracts labels from the PR that this build belongs to and make them available to other actions.",
   "main": "build/index.js",
   "scripts": {
