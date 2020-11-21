@@ -32,9 +32,16 @@ jobs:
       - name: Get PR labels
         id: pr-labels
         uses: joerick/pr-labels-action@v1.0.1
+
+      # GITHUB_PR_LABEL_TEST_FLIMBOMBLE was set by pr-labels-action
       - run: |
           bin/run_normal_tests
           if [ -n "$GITHUB_PR_LABEL_TEST_FLIMBOMBLE" ]; then
             bin/run_flimbomble_tests
           fi
+
+      # or you can use the action output
+      - run: |
+          bin/publish_flimbomble_test_results
+        if: steps.pr-labels.outputs.labels.test-flimbomble
 ```

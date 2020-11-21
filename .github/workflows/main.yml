@@ -12,3 +12,6 @@ jobs:
         uses: ./ # Uses an action in the root directory
       - run: |
           env | grep GITHUB_PR_LABEL || true
+      - run: |
+          echo "enhancement label was there."
+        if: steps.pr-labels.outputs.labels.enhancement
