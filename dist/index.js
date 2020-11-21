@@ -99,7 +99,7 @@ function main() {
         const identifier = nameToIdentifier(label.name);
         const environmentVariable = nameToEnvironmentVariableName(label.name);
         core.exportVariable(environmentVariable, '1');
-        core.info(`\nFound label ${ansiColor_1.default.startColor(label.color)} ${label.name} ${ansiColor_1.default.endColor()}.\n  Setting env var: ${environmentVariable}=1`);
+        core.info(`\nFound label ${ansiColor_1.default.startColor(label.color)} ${label.name} ${ansiColor_1.default.endColor()}\n  Setting env var for remaining steps: ${environmentVariable}=1`);
         output[identifier] = true;
     }
     core.info(`\nAction output:\nlabels: ${JSON.stringify(output)}`);

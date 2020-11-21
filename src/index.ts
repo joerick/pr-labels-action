@@ -32,7 +32,7 @@ function main() {
         const environmentVariable = nameToEnvironmentVariableName(label.name);
 
         core.exportVariable(environmentVariable, '1');
-        core.info(`\nFound label ${ansiColor.startColor(label.color)} ${label.name} ${ansiColor.endColor()}.\n  Setting env var: ${environmentVariable}=1`)
+        core.info(`\nFound label ${ansiColor.startColor(label.color)} ${label.name} ${ansiColor.endColor()}\n  Setting env var for remaining steps: ${environmentVariable}=1`)
         output[identifier] = true
     }
 
