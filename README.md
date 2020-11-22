@@ -8,7 +8,11 @@ A Github action that extracts labels from the PR that this build belongs to, and
 
 ### `labels`
 
-The labels on this PR. A dictionary containing `true` where a label exists
+The labels on this PR. A string containing tag identifiers surrounded with spaces for easy use with `contains`.
+
+### `labels-object`
+
+The labels on this PR. A dictionary containing `true` where a label exists.
 
 ## Example usage
 
