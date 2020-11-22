@@ -1,6 +1,7 @@
 import * as core from '@actions/core';
 import * as github from '@actions/github';
 import ansiColor from './ansiColor';
+import _deburr from 'lodash/deburr';
 
 interface Label {
     color: string,
@@ -53,11 +54,18 @@ try {
 
 function nameToIdentifier(name: string) {
     return name
-        .replace(/[^\w-]+/g, '-')
-        .replace(/-+/g, '-')
+        .replace(/['"“‘”’]+/gu, '')  // remove quotes
+        .replace(/[^\p{Letter}\p{Number}]+/gu, '-')  // non alphanum to dashes
+        .replace(/-+/g, '-')  // remove consecutive dashes
         .toLowerCase()
 }
 
 function nameToEnvironmentVariableName(name: string) {
-    return 'GITHUB_PR_LABEL_' + nameToIdentifier(name).toUpperCase().replace('-', '_');
+    return 'GITHUB_PR_LABEL_' + (
+        _deburr(name)  // remove accents
+            .replace(/['"“‘”’]+/gu, '')  // remove quotes
+            .replace(/[^\w]+/g, '_')  // non-alphanum to underscores
+            .replace(/_+/g, '_')  // remove consecutive underscores
+            .toUpperCase()
+    )
 }

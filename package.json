@@ -21,10 +21,12 @@
   "homepage": "https://github.com/joerick/pr-labels-action#readme",
   "dependencies": {
     "@actions/core": "^1.2.6",
-    "@actions/github": "^4.0.0"
+    "@actions/github": "^4.0.0",
+    "lodash": "^4.17.20"
   },
   "devDependencies": {
-    "typescript": "^4.0.2",
-    "@vercel/ncc": "^0.25.1"
+    "@types/lodash": "^4.14.165",
+    "@vercel/ncc": "^0.25.1",
+    "typescript": "^4.0.2"
   }
 }
