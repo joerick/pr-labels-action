@@ -13,7 +13,7 @@ outputs:
       The labels on this PR. A dictionary containing `true` where a label
       exists
 runs:
-  using: 'node12'
+  using: 'node16'
   main: 'dist/index.js'
 branding:
   icon: 'tag'  
