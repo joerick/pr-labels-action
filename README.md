@@ -22,7 +22,7 @@ jobs:
     steps:
       - name: Get PR labels
         id: pr-labels
-        uses: joerick/pr-labels-action@v1.0.6
+        uses: joerick/pr-labels-action@v1.0.7
 ```
 
 ## How do I use this?
@@ -35,7 +35,7 @@ jobs:
     steps:
       - name: Get PR labels
         id: pr-labels
-        uses: joerick/pr-labels-action@v1.0.6
+        uses: joerick/pr-labels-action@v1.0.7
 
       # GITHUB_PR_LABEL_TEST_FLIMBOMBLE was set by pr-labels-action
       - run: |
