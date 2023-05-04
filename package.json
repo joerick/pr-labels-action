@@ -26,7 +26,7 @@
   },
   "devDependencies": {
     "@types/lodash": "^4.14.165",
-    "@vercel/ncc": "^0.25.1",
+    "@vercel/ncc": "^0.36.0",
     "typescript": "^4.0.2"
   }
 }
