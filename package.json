@@ -1,6 +1,6 @@
 {
   "name": "pr-labels-action",
-  "version": "1.0.8",
+  "version": "1.0.10",
   "description": "A github action that extracts labels from the PR that this build belongs to and make them available to other actions.",
   "main": "build/index.js",
   "scripts": {
@@ -21,12 +21,12 @@
   "homepage": "https://github.com/joerick/pr-labels-action#readme",
   "dependencies": {
     "@actions/core": "^1.10.0",
-    "@actions/github": "^4.0.0",
-    "lodash": "^4.17.20"
+    "@actions/github": "^5.1.1",
+    "lodash": "^4.17.21"
   },
   "devDependencies": {
-    "@types/lodash": "^4.14.165",
-    "@vercel/ncc": "^0.36.0",
+    "@types/lodash": "^4.14.195",
+    "@vercel/ncc": "^0.36.1",
     "typescript": "^4.0.2"
   }
 }
